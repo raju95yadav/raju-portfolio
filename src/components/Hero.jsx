@@ -152,7 +152,7 @@ const Hero = () => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <a
-              href="https://raw.githubusercontent.com/raju95yadav/raju-portfolio/blob/main/public/raju_resume.pdf"
+              href="https://raw.githubusercontent.com/raju95yadav/raju-portfolio/main/public/raju_resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-lg shadow-indigo-600/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
