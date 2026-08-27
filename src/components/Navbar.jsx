@@ -9,6 +9,7 @@ const Navbar = ({ theme, toggleTheme }) => {
   const navLinks = [
     { label: 'Home', id: 'home' },
     { label: 'About', id: 'about' },
+    { label: 'Experience', id: 'experience' },
     { label: 'Skills', id: 'skills' },
     { label: 'Projects', id: 'projects' },
     { label: 'Journey', id: 'timeline' },
@@ -77,16 +78,16 @@ const Navbar = ({ theme, toggleTheme }) => {
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-1 bg-slate-100/80 dark:bg-slate-900/80 p-1.5 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 backdrop-blur-md">
             {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={(e) => handleNavClick(e, link.id)}
-                className={`relative px-4 py-2 text-sm font-medium transition-all rounded-lg ${
+                className={`relative px-3.5 py-1.5 text-xs font-semibold transition-all rounded-xl ${
                   activeSection === link.id
-                    ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-950/30'
-                    : 'text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 hover:bg-slate-100/50 dark:hover:bg-slate-900/40'
+                    ? 'text-indigo-700 dark:text-indigo-300 bg-white dark:bg-slate-800 shadow-sm border border-slate-200/60 dark:border-slate-700/60 font-bold'
+                    : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
                 }`}
               >
                 {link.label}
@@ -99,16 +100,17 @@ const Navbar = ({ theme, toggleTheme }) => {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
+              className="p-2.5 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all shadow-sm"
               aria-label="Toggle Theme"
+              title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
             >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              {theme === 'dark' ? <Sun size={18} className="text-amber-400" /> : <Moon size={18} className="text-indigo-600" />}
             </button>
 
             {/* Mobile Menu Trigger */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2.5 lg:hidden rounded-lg border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
+              className="p-2.5 lg:hidden rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all shadow-sm"
               aria-label="Toggle Menu"
             >
               {isOpen ? <X size={18} /> : <Menu size={18} />}
@@ -119,17 +121,17 @@ const Navbar = ({ theme, toggleTheme }) => {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full glass shadow-2xl py-4 border-t border-slate-100 dark:border-slate-900 animate-fade-in">
-          <div className="px-4 space-y-1">
+        <div className="lg:hidden absolute top-full left-0 w-full glass shadow-2xl py-4 border-t border-slate-200 dark:border-slate-800 animate-fade-in">
+          <div className="px-4 space-y-1.5">
             {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={(e) => handleNavClick(e, link.id)}
-                className={`block px-4 py-2.5 text-base font-medium rounded-lg transition-colors ${
+                className={`block px-4 py-2.5 text-sm font-semibold rounded-xl transition-all ${
                   activeSection === link.id
-                    ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-950/30'
-                    : 'text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-900'
+                    ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-100 dark:border-indigo-900/50'
+                    : 'text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-900'
                 }`}
               >
                 {link.label}

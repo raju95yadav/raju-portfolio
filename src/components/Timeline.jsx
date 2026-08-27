@@ -5,29 +5,29 @@ const Timeline = () => {
   const steps = [
     {
       year: "2026",
-      title: "Building Scalable Systems",
-      description: "Focusing on architectural designs, optimizing API endpoints, implementing database index profiles, and studying DSA structures.",
+      title: "Real-Time & AI Systems Architecture",
+      description: "Architected Talk-Sphere featuring multi-room Socket.io WebSockets, embedded AI agent assistant, Cloudinary file uploads, and debounced state persistence for notes.",
       icon: <Zap size={18} className="text-pink-500" />,
       bgIcon: "bg-pink-500/10"
     },
     {
       year: "2025",
-      title: "Learned Deployment & Real-time Apps",
-      description: "Mastered WebSockets (Socket.io), Cloudinary asset hosting, user validation methods, and deploying projects directly onto cloud platforms like Vercel and render engines.",
+      title: "Enterprise Multi-Role & 2FA E-Commerce",
+      description: "Engineered Glam Beauty featuring Redux Toolkit state stores, 2FA admin authentication, 4 distinct user role portals (Customer, Seller, Driver, Admin), and logistics dispatch schema routing.",
       icon: <Globe size={18} className="text-emerald-500" />,
       bgIcon: "bg-emerald-500/10"
     },
     {
       year: "2024",
-      title: "Built MERN Projects",
-      description: "Deepened frontend/backend skills by building full-stack web sites, e-commerce stores, role controls, database routing, and state stores.",
+      title: "Full-Stack MERN Mastery",
+      description: "Deepened backend REST API route authorization, JWT cookie security middleware, MongoDB relational schema modeling, and responsive Tailwind UI designs.",
       icon: <Code size={18} className="text-indigo-500" />,
       bgIcon: "bg-indigo-500/10"
     },
     {
       year: "2023",
-      title: "Started Coding",
-      description: "Initiated my software journey by learning structural HTML/CSS layouts, Javascript fundamentals, DOM manipulation, and setting up core development settings.",
+      title: "Core CS & JavaScript Foundations",
+      description: "Initiated software engineering journey mastering ES6+ JavaScript, DOM manipulation, asynchronous programming, and data structures & algorithms.",
       icon: <Calendar size={18} className="text-violet-500" />,
       bgIcon: "bg-violet-500/10"
     }

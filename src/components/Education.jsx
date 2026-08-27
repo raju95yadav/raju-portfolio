@@ -97,9 +97,9 @@ const Education = () => {
               </div>
             </div>
             
-            <div className="mt-8 p-4 rounded-2xl bg-indigo-50/80 dark:bg-indigo-950/15 border border-indigo-100 dark:border-indigo-900/10">
-              <p className="text-xs text-indigo-800 dark:text-indigo-300 leading-normal text-left">
-                💡 Currently maintaining a strong emphasis on applying these theoretical modules directly to MERN application builds, specifically focusing on data structures, socket connections, and schema normalization.
+            <div className="mt-8 p-4 rounded-2xl bg-indigo-50/80 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/30">
+              <p className="text-xs sm:text-sm text-indigo-900 dark:text-indigo-300 leading-relaxed text-left">
+                💡 <strong>Practical CS Application:</strong> Directly applied RDBMS & Schema Normalization to design multi-role order dispatch models in <strong>Glam Beauty</strong>, and leveraged Computer Networks & OS Process concepts to engineer low-latency Socket.io WebSocket channels and debounced state persistence in <strong>Talk-Sphere</strong>.
               </p>
             </div>
           </div>

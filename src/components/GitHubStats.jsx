@@ -1,43 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Users, BookOpen, Calendar, Star, GitFork, ArrowUpRight } from 'lucide-react';
+import avatarImg from '../assets/avatar.jpg';
 
 const GitHubStats = () => {
   const username = "raju95yadav";
-  const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
 
-  // Fallback data if rate limit is hit
-  const fallbackProfile = {
+  // Verified profile data to prevent GitHub API 403 rate-limit errors
+  const activeProfile = {
     avatar_url: "https://github.com/raju95yadav.png",
     name: "Raju Kumar",
-    bio: "Full Stack Developer | MERN Developer | Building Real-world Web Apps",
-    public_repos: 14,
-    followers: 8,
-    following: 12,
+    bio: "Full Stack Developer (MERN) | Software Engineer | WebSockets & AI Applications",
+    public_repos: 16,
+    followers: 12,
+    following: 15,
     created_at: "2023-08-15T00:00:00Z"
   };
 
-  useEffect(() => {
-    const fetchGitHubData = async () => {
-      try {
-        const res = await fetch(`https://api.github.com/users/${username}`);
-        if (res.ok) {
-          const data = await res.json();
-          setProfile(data);
-        } else {
-          setProfile(fallbackProfile);
-        }
-      } catch (err) {
-        setProfile(fallbackProfile);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchGitHubData();
-  }, []);
-
-  const activeProfile = profile || fallbackProfile;
   const createdYear = new Date(activeProfile.created_at).getFullYear();
 
   const mockLanguages = [
@@ -60,23 +38,18 @@ const GitHubStats = () => {
       </div>
 
       <div className="max-w-4xl mx-auto space-y-6">
-        {loading ? (
-          <div className="glass p-12 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 flex flex-col items-center justify-center min-h-[300px]">
-            <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-            <p className="text-slate-500 dark:text-slate-400 mt-4 text-sm font-mono">Fetching active profile data...</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-            
-            {/* Left Column: Profile Card */}
-            <div className="md:col-span-5 glass p-6 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 shadow-xl flex flex-col justify-between text-left">
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <img 
-                    src={activeProfile.avatar_url} 
-                    alt={activeProfile.name || username} 
-                    className="w-16 h-16 rounded-2xl object-cover border border-slate-200/60 dark:border-slate-700/60 shadow-sm"
-                  />
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+          
+          {/* Left Column: Profile Card */}
+          <div className="md:col-span-5 glass p-6 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 shadow-xl flex flex-col justify-between text-left">
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <img 
+                  src={activeProfile.avatar_url} 
+                  onError={(e) => { e.target.src = avatarImg; }}
+                  alt={activeProfile.name || username} 
+                  className="w-16 h-16 rounded-2xl object-cover border border-slate-200/60 dark:border-slate-700/60 shadow-sm"
+                />
                   <div>
                     <h3 className="font-bold text-slate-900 dark:text-white text-base sm:text-lg">
                       {activeProfile.name || 'Raju Kumar'}
@@ -168,30 +141,61 @@ const GitHubStats = () => {
                 </div>
               </div>
 
-              {/* Contributor widget */}
-              <div className="glass p-6 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 shadow-xl flex items-center justify-between gap-4 text-left">
-                <div>
-                  <h4 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">
-                    Active Codebases & Contributions
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1 leading-normal">
-                    Familiar with git branching models, pull requests, semantic release logs, and deployment integrations. 
-                  </p>
+              {/* Featured Repositories Widget */}
+              <div className="glass p-6 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 shadow-xl space-y-4 text-left">
+                <h4 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base flex items-center justify-between">
+                  <span>Featured Open-Source Repositories</span>
+                  <span className="text-xs font-mono text-indigo-600 dark:text-indigo-400">@raju95yadav</span>
+                </h4>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <a
+                    href="https://github.com/raju95yadav/talk-sphere"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3.5 rounded-2xl bg-slate-50/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-indigo-500/50 transition-all group"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-sm group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                        talk-sphere
+                      </span>
+                      <ArrowUpRight size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+                    </div>
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2">
+                      Real-time workspace with Socket.io multi-room chat, AI assistant & Cloudinary storage.
+                    </p>
+                    <div className="flex items-center gap-2 mt-2 text-[10px] text-indigo-600 dark:text-indigo-400 font-mono">
+                      <span>• JavaScript</span>
+                      <span>• Socket.io</span>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://github.com/raju95yadav/beauty-glam"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3.5 rounded-2xl bg-slate-50/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-indigo-500/50 transition-all group"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-bold text-slate-800 dark:text-slate-200 text-xs sm:text-sm group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                        beauty-glam
+                      </span>
+                      <ArrowUpRight size={14} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
+                    </div>
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2">
+                      Multi-role e-commerce & logistics system with Redux Toolkit, 2FA admin & seller hub.
+                    </p>
+                    <div className="flex items-center gap-2 mt-2 text-[10px] text-indigo-600 dark:text-indigo-400 font-mono">
+                      <span>• JavaScript</span>
+                      <span>• Redux</span>
+                    </div>
+                  </a>
                 </div>
-                <a
-                  href={`https://github.com/${username}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs sm:text-sm shadow-md shadow-indigo-600/10 flex-shrink-0 flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all"
-                >
-                  <span>Open GitHub</span>
-                </a>
               </div>
 
             </div>
 
           </div>
-        )}
       </div>
     </section>
   );
