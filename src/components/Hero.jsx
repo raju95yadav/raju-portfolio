@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Download, Eye, MessageSquare, Phone } from 'lucide-react';
+import { Download, Eye, MessageSquare, Phone, FileText } from 'lucide-react';
 import avatarImg from '../assets/avatar.jpg';
+import ResumeModal from './ResumeModal';
 
 const Hero = () => {
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(120);
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   const words = [
     "Full-Stack Developer",
@@ -155,27 +157,34 @@ const Hero = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3.5 pt-4">
+            <button
+              onClick={() => setIsResumeModalOpen(true)}
+              className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-lg shadow-indigo-600/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+            >
+              <FileText size={18} />
+              <span>View Resume</span>
+            </button>
             <a
               href="/raju_resume.pdf"
               download="Raju_Kumar_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-lg shadow-indigo-600/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl glass border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 font-semibold hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <Download size={18} />
               <span>Download Resume</span>
             </a>
             <button
               onClick={() => handleScrollTo('projects')}
-              className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl glass border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 font-semibold hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl glass border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 font-semibold hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
             >
               <Eye size={18} />
               <span>View Projects</span>
             </button>
             <button
               onClick={() => handleScrollTo('contact')}
-              className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl glass border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 font-semibold hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl glass border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 font-semibold hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
             >
               <MessageSquare size={18} />
               <span>Contact Me</span>
@@ -203,6 +212,12 @@ const Hero = () => {
         </div>
 
       </div>
+
+      {/* Resume Modal Viewer */}
+      <ResumeModal
+        isOpen={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+      />
     </section>
   );
 };
