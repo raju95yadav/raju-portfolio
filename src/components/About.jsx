@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, BookOpen, Code2, GraduationCap, Flame, Cpu, ShieldCheck, Zap } from 'lucide-react';
+import { Award, Code2, GraduationCap, Flame, Cpu, ShieldCheck, Zap, Globe, Code, Calendar } from 'lucide-react';
 
 const About = () => {
   const stats = [
@@ -17,6 +17,37 @@ const About = () => {
       icon: <Cpu className="text-pink-500" size={24} />,
       value: "MERN + Sockets",
       label: "Specialist"
+    }
+  ];
+
+  const milestones = [
+    {
+      year: "2026",
+      title: "Real-Time & AI Systems Architecture",
+      description: "Architected Talk-Sphere featuring multi-room Socket.io WebSockets, embedded AI agent assistant, Cloudinary file uploads, and debounced state persistence for notes.",
+      icon: <Zap size={18} className="text-pink-500" />,
+      bgIcon: "bg-pink-500/10"
+    },
+    {
+      year: "2025",
+      title: "Enterprise Multi-Role & 2FA E-Commerce",
+      description: "Engineered Glam Beauty featuring Redux Toolkit state stores, 2FA admin authentication, 4 distinct user role portals (Customer, Seller, Driver, Admin), and logistics dispatch schema routing.",
+      icon: <Globe size={18} className="text-emerald-500" />,
+      bgIcon: "bg-emerald-500/10"
+    },
+    {
+      year: "2024",
+      title: "Full-Stack MERN Mastery",
+      description: "Deepened backend REST API route authorization, JWT cookie security middleware, MongoDB relational schema modeling, and responsive Tailwind UI designs.",
+      icon: <Code size={18} className="text-indigo-500" />,
+      bgIcon: "bg-indigo-500/10"
+    },
+    {
+      year: "2023",
+      title: "Core CS & JavaScript Foundations",
+      description: "Initiated software engineering journey mastering ES6+ JavaScript, DOM manipulation, asynchronous programming, and data structures & algorithms.",
+      icon: <Calendar size={18} className="text-violet-500" />,
+      bgIcon: "bg-violet-500/10"
     }
   ];
 
@@ -125,6 +156,63 @@ const About = () => {
           </div>
         </div>
 
+      </div>
+
+      {/* Integrated Journey Timeline & Milestones */}
+      <div className="mt-20 pt-12 border-t border-slate-200/60 dark:border-slate-800/60">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            Journey & Learning Milestones
+          </h3>
+          <div className="w-12 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mt-3 rounded-full"></div>
+          <p className="mt-3 text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+            My learning path and key software engineering milestones.
+          </p>
+        </div>
+
+        <div className="relative max-w-3xl mx-auto">
+          {/* Connecting Vertical Bar */}
+          <div className="absolute left-6 md:left-1/2 top-4 bottom-4 w-0.5 bg-indigo-100 dark:bg-slate-800 -translate-x-[1px]"></div>
+
+          <div className="space-y-12">
+            {milestones.map((step, idx) => (
+              <div 
+                key={idx}
+                className={`flex flex-col md:flex-row items-start relative ${
+                  idx % 2 === 0 ? 'md:flex-row-reverse' : ''
+                }`}
+              >
+                {/* Central Dot */}
+                <div className="absolute left-6 md:left-1/2 w-8 h-8 rounded-full border-4 border-slate-50 dark:border-slate-950 flex items-center justify-center -translate-x-1/2 bg-indigo-50 dark:bg-indigo-900/40 z-10 shadow-md">
+                  <span className="w-2.5 h-2.5 rounded-full bg-indigo-600 dark:bg-indigo-400"></span>
+                </div>
+
+                {/* Content Card */}
+                <div className="w-full md:w-1/2 pl-12 md:pl-0 md:px-8">
+                  <div className="glass p-6 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 shadow-xl hover:scale-[1.02] transition-all">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-bold font-mono tracking-widest px-3 py-1 bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 rounded-lg">
+                        {step.year}
+                      </span>
+                      <div className={`p-2 rounded-xl ${step.bgIcon}`}>
+                        {step.icon}
+                      </div>
+                    </div>
+                    <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                      {step.title}
+                    </h4>
+                    <p className="text-sm text-slate-700 dark:text-slate-400 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Placeholder spacer */}
+                <div className="hidden md:block w-1/2"></div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
